@@ -19,7 +19,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function ListaProduto() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
-  const [categorias,setCategorias] = useState<Categoria[]>([]);
+  const [categorias, setCategorias] = useState<Categoria[]>([]);
   let navigate = useNavigate();
   const token = useSelector<TokenState, TokenState["tokens"]>(
     (state) => state.tokens
@@ -49,12 +49,13 @@ function ListaProduto() {
     });
   }
 
-  async function getCategorias(){
-    await busca('/categoria/all',setCategorias,{
-      headers:{
+  async function getCategorias() {
+    await busca('/categoria/all', setCategorias, {
+      headers: {
         Authorization: token,
-      }
+      },
     })
+
   }
 
   useEffect(() => {
@@ -109,10 +110,10 @@ function ListaProduto() {
     <>
     <ul className="marcadorLista">
       <li className="btMesmaLinha"><button className="btnEstilo">TODOS OS PRODUTOS</button></li>
-      {categorias.map((categoria) =>(
-        <li className="btMesmaLinha"><Link to='{`/categoria/${categoria.id}`}'><button className="btnEstilo">{categoria.tipo}</button></Link></li>
+      {categorias.map((categoria) => (
+          <li className='btMesmaLinha'> <Link to={`/categoria/${categoria.id}`}><button className='btnEstilo'>{categoria.tipo}</button></Link> </li>
+        ))}
 
-      ))}
       <li className="btMesmaLinha"><button className="btnEstilo">QUERO DOAR</button></li>
       <li className="btMesmaLinha">
         <button className="btnEstilo">
